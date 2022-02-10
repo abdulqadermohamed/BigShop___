@@ -1,0 +1,130 @@
+@using Microsoft.AspNet.Identity
+@model BigShop___.Models.WishList
+
+@{
+    ViewBag.Title = "Second Phase";
+}
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Big Store-Register</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Unicat project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/Content/styles/bootstrap4/bootstrap.min.css">
+    <link href="~/Content/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/styles/responsive.css">
+    <link href="~/Content/styles/animate.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/styles/jquery.countdown.css" />
+    <link href="https://fonts.googleapis.com/css?family=Cairo:300,400,700,900" rel="stylesheet">
+</head>
+<body>
+   
+    <div class="log-register" style="position:fixed">
+        <div class="container">
+            <div class="lr-content">
+                <div class="log-register-content">
+                    <div class="logo_container wow tada">
+                        <a href="~/Home/index">
+                            <span class="the">the </span>
+                            <div class="logo_text">Big Store<span></span></div>
+                            <p class="somtitle">The best supermarket</p>
+                        </a>
+                    </div>
+
+
+                    <div class="loginregister">
+                        <h2 class="title wow bounceInUp delay-100">Second Phase</h2>
+                        <div class="loginwith">
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        @using (Html.BeginForm("Create", "WishList"))
+                        {
+                            @Html.AntiForgeryToken()<div class="tabcontent-grids">
+                                <input type="hidden" name="userId" value="@User.Identity.GetUserId()" />
+
+                                <div id="formABC1">
+
+                                    @*<input id="btnSubmit1" type="submit" value="Create Cart" class="btn btn-default wow btn_create" style="background: #c23945;width:100%;border:none;outline:none;margin-bottom:10px ; box-shadow:none;color:white;font-weight:600;font-size:20px;cursor:pointer" />*@
+                                    @Html.ActionLink("Create Wish List", "Create", "WishList", null, new { id = "btnSubmit1", @class = "btn btn-default wow btn_create", style = "background: #c23945;width:100%;border:none;outline:none;margin-bottom:10px ; box-shadow:none;color:white;font-weight:600;font-size:20px;cursor:pointer" })
+
+
+                                </div>
+
+                                <div id="add">
+                                    <input id="idbtn" type="submit" value="All Done >> " class="btn btn-success wow" style="width:100%;border:none;outline:none;margin-bottom:50px ; box-shadow:none;color:white;font-weight:600;font-size:20px;cursor:pointer;" />
+                                </div>
+
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/main.js"></script>
+    <script src="~/Content/js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <script src="~/Content/js/SmoothScroll.min.js"></script>
+
+    <!----- Start owl carosel --->
+    <!--        <script src="~/Content/js/jquery.min.js"></script>-->
+    <script src="~/Content/js/owl.carousel.min.js"></script>
+    <!----- Ebd owl carosel --->
+
+    <script src="~/Content/js/loading.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    <script src="~/Content/js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+
+    <script>
+        var x = 0;
+        $(document).ready(function () {
+            $("#idbtn").hide();
+
+            //$("#idbtn").attr("disabled", true);
+
+            $("#formABC1").click(function (e) {
+
+                e.preventDefault();
+                $("#btnSubmit1").hide(900);
+                x++;
+                if (x >= 1) {
+                    $("#idbtn").show(900);
+                    //    $("#idbtn").attr("disabled", false);
+                }
+                return true;
+
+            });
+
+
+        });
+    </script>
+</body>
+</html>
+

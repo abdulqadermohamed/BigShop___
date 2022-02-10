@@ -1,0 +1,76 @@
+﻿@model IEnumerable<BigShop___.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "show";
+}
+@{ Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-top:3%" class="container-fluid">
+
+    <h2>show</h2>
+
+    @*<p>
+        @Html.ActionLink("Create New", "Register")
+    </p>*@
+    <div class="super_container">
+        <div class="catr-table">
+            <div class="container">
+                <div style="        overflow-x: auto; box-shadow: 0 0 10px #d8d8d8;">
+                    <table class="contenttable table table-hover table-bordered ">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <p>@Html.DisplayNameFor(model => model.First_Name)</p>
+                                </th>
+                                <th>
+                                    <p>@Html.DisplayNameFor(model => model.Last_Name)</p>
+                                </th>
+                                <th>
+                                    <p>@Html.DisplayNameFor(model => model.Email)</p>
+                                </th>
+
+                                <th>
+                                    <p>@Html.DisplayNameFor(model => model.UserName)</p>
+                                </th>
+
+
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td >
+                                        @Html.DisplayFor(modelItem => item.First_Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Last_Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+
+
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserName)
+                                    </td>
+
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>

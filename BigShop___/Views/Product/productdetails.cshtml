@@ -1,0 +1,537 @@
+﻿@model BigShop___.Models.Product
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Product Details";
+    ViewBag.activecategories = "active";
+}
+@{ Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<div class="super_container">
+    @* Product Details *@
+
+    <div class="cart">
+        <div class="overlay">
+            <h2 class="wow tada">@Model.Category.CategoryName</h2>
+            <ul class="wow slideInUp">
+                <li>
+                    <a href="~/Home/index" class="">Home</a>
+                </li>
+                <li>
+                    <p>/</p>
+                </li>
+                <li>
+                    <a>@Model.Category.CategoryName</a>
+                </li>
+                <li>
+                    <p>/</p>
+                </li>
+                <li>
+                    <a class="activelink">@Model.ProductName</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="product-details-he75">
+        <div class="container">
+            <div class="proconde-he75 wow bounceInUp">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="imagepro wow fadeInLeft delay-100">
+                            <img src="~/images/@Model.ProductImageURL">
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="conifo">
+                            <h2 class="wow bounceInRight delay-100">@Model.ProductName</h2>
+                            <div class="rstestare wow bounceInRight delay-200">
+                                <ul>
+                                    @for (int y = 0; y < 5; y++)
+                                    {
+                                        if (Model.ProductRate > y)
+                                        {
+                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                        }
+                                        else
+                                        {
+                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                            <div class="line"></div>
+                            <div class="price-stoc-he75">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="price  wow bounceInLeft delay-300">
+                                            <span class="old">
+                                                <i class="fa fa-gbp" aria-hidden="true"></i> @Model.ProductOldPrice
+                                            </span>
+                                            <span class="new">
+                                                <i class="fa fa-gbp" aria-hidden="true"></i> @Model.ProductNewPrice
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="stock wow bounceInRight delay-300">
+                                            <span id="spnstock'>
+                                                <i class="fa fa-check"></i>  @Model.ProductStock in stock
+                                            </spanspnstock>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="addcontent-he75">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                    <form method="post" class="formcart" data-ajax="true" data-ajax-method="post" data-ajax-complete="completed">
+
+                                        <ul>
+
+                                            <li class="wow bounceInUp delay-400">
+                                                <input type="hidden" value="@User.Identity.GetUserId()" name="User_Id" />
+
+                                                <input type="number" class="form-control " id="quantity" value="1" name="quantity" min="1" max="@Model.ProductID">
+                                            </li>
+                                            <li class="wow bounceInUp delay-500">
+
+                                                @*<button type="submit" class="btn btn-danger"><i class="fa fa-shopping-cart" aria-hidden="true"></i>add to cart</button>*@
+                                                <input type="hidden" value="@Model.ProductID" name="productId" />
+
+                                                <button class="btn btn-danger submit" id="@Model.ProductID">
+                                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>add to cart
+                                                </button>
+
+                                            </li>
+                                        </ul>
+                                    </form>
+
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <ul>
+                                        <li class="wow bounceInUp delay-500">
+                                            <form method="post" data-ajax="true" data-ajax-method="post" data-ajax-complete="completed">
+                                                <input type="hidden" value="@User.Identity.GetUserId()" name="User_Id" />
+                                                <input type="hidden" value="@Model.ProductID" name="productId" />
+                                                <button class="btn btn-solid whitlise submitwishlist" id="@Model.ProductID">
+                                                    <i class="fa fa-heart-o" aria-hidden="true"></i>add to wishlist
+                                                </button>
+                                            </form>
+
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="articles-he75">
+                            <p class="wow fadeInUp delay-500">
+                                @Model.ProductDescription
+                            </p>
+                        </div>
+                        <div class="line"></div>
+                        <div class="shareicon-he75">
+                            <div class="contenetete">
+                                <a href="#" class="facebook wow bounceInUp">
+                                    <i class="fa fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="google wow bounceInUp delay-100">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                                <a href="#" class="twiter wow bounceInUp delay-200">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a href="#" class="linkedin wow bounceInUp delay-300">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="insta wow bounceInUp delay-400">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="prorrser-he75">
+                            <ul>
+                                <li class=" wow bounceInLeft delay-100"><i class="fa fa-circle"></i> free worldwide shipping</li>
+                                <li class=" wow bounceInLeft delay-200"><i class="fa fa-circle"></i> 30 days return</li>
+                                <li class=" wow bounceInLeft delay-300"><i class="fa fa-circle"></i> member discount</li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="revew-he75">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-lx-12">
+
+                    <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active wow bounceInLeft delay-300"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">description</a></li>
+                            <li class=" wow bounceInLeft" role="presentation"><a href="#carl" role="tab" id="carl-tab" data-toggle="tab" aria-controls="carl">reviews</a></li>
+
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active show " id="home" aria-labelledby="home-tab">
+                                <div class="tabcontent-grids  wow bounceInUp delay-100">
+                                    <div class="tab_panel_content">
+                                        <div class="tab_panel_text">
+                                            <p>
+                                                @Model.ProductDescription
+
+                                                **********************
+                                                Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi
+                                                accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosquad litora torquent per conubia nostra, per
+                                                inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent
+                                                per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit. Sed ut imperdiet nisi. Proin condimentum fermentum
+                                                nunc. Lorem Ipsn gravida nibh vel velit auctor aliquet. Class aptent taciti sociosquad litora torquent per conubia nostra, per inceptos himenaeos.
+                                            </p>
+                                        </div>
+                                        <div class="tab_panel_section">
+                                            <div class="tab_panel_subtitle">Requirements</div>
+                                            <ul class="tab_panel_bullets">
+                                                <li>Lorem Ipsn gravida nibh vel velit auctor aliquet. Class aptent taciti sociosquad litora torquent.</li>
+                                                <li>Cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a.</li>
+                                                <li>Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat.</li>
+                                                <li>Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="tab_panel_section">
+                                            <div class="tab_panel_subtitle">What is the target audience?</div>
+                                            <div class="tab_panel_text">
+                                                <p>
+                                                    This course is intended for anyone interested in learning to master his or her own body.This course is aimed at beginners, so no previous experience with hand balancing skillts is necessary Aenean viverra
+                                                    tincidunt nibh, in imperdiet nunc. Suspendisse eu ante pretium, consectetur leo at, congue quam. Nullam hendrerit porta ante vitae tristique. Vestibulum ante ipsum primis in faucibus orci luctus
+                                                    et ultrices posuere cubilia Curae.
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="carl" aria-labelledby="carl-tab">
+                                <div class="tabcontent-grids  wow bounceInUp">
+                                    <div class="tab_panel_content">
+                                        <div class="tab_panel_text ">
+                                            <div class="tab_panel_title">Course Review</div>
+                                            <div class="review_rating_container">
+                                                <div class="review_rating wow bounceInLeft delay-100">
+                                                    <div class="rating_num">@Model.ProductRate</div>
+                                                    <div class="stars">
+                                                        <ul>
+                                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                            <li><i class="fa fa-star-half-o" aria-hidden="true"></i></li>
+                                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="review_rating_text">(28 Ratings)</div>
+                                                </div>
+                                                <div class="review_rating_bars wow bounceInRight delay-100">
+                                                    <ul>
+                                                        <li>
+                                                            <span>5 Star</span>
+                                                            <div class="review_rating_bar">
+                                                                <div style="width:90%;"></div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <span>4 Star</span>
+                                                            <div class="review_rating_bar">
+                                                                <div style="width:75%;"></div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <span>3 Star</span>
+                                                            <div class="review_rating_bar">
+                                                                <div style="width:32%;"></div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <span>2 Star</span>
+                                                            <div class="review_rating_bar">
+                                                                <div style="width:10%;"></div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <span>1 Star</span>
+                                                            <div class="review_rating_bar">
+                                                                <div style="width:3%;"></div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div class="comments_container">
+                                                <ul class="comments_list">
+                                                    <li class=" wow bounceInUp delay-100">
+                                                        <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
+                                                            <div class="comment_image"><img src="~/Content/images/comment_1.jpg" alt=""></div>
+                                                            <div class="comment_content">
+
+                                                                <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
+                                                                    <div class="comment_author"><a href="#">COODBOOK</a></div>
+                                                                    <div class="stars">
+                                                                        <ul>
+                                                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                                            <li><i class="fa fa-star-half-o" aria-hidden="true"></i></li>
+                                                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="comment_time ml-auto">1 day ago</div>
+                                                                </div>
+                                                                <div class="comment_text">
+                                                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have alteration in some form, by injected humour.</p>
+                                                                </div>
+                                                                <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
+                                                                    <div class="comment_extra comment_likes"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i><span>15</span></a></div>
+                                                                    <div class="comment_extra comment_reply"><a href="#"><i class="fa fa-reply" aria-hidden="true"></i><span>Reply</span></a></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <ul>
+                                                            <li class=" wow bounceInUp delay-100">
+                                                                <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
+                                                                    <div class="comment_image">
+                                                                        <div><img src="~/Content/images/comment_2.jpg" alt=""></div>
+                                                                    </div>
+                                                                    <div class="comment_content">
+                                                                        <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
+                                                                            <div class="comment_author"><a href="#">John Tyler</a></div>
+                                                                            <div class="stars">
+                                                                                <ul>
+                                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                                                    <li><i class="fa fa-star-half-o" aria-hidden="true"></i></li>
+                                                                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                                                                </ul>
+                                                                            </div>
+                                                                            <div class="comment_time ml-auto">1 day ago</div>
+                                                                        </div>
+                                                                        <div class="comment_text">
+                                                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have alteration in some form, by injected humour.</p>
+                                                                        </div>
+                                                                        <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
+                                                                            <div class="comment_extra comment_likes"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i><span>15</span></a></div>
+                                                                            <div class="comment_extra comment_reply"><a href="#"><i class="fa fa-reply" aria-hidden="true"></i><span>Reply</span></a></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="">
+                                                        <div class="comment_item d-flex flex-row align-items-start jutify-content-start wow bounceInUp delay-100">
+                                                            <div class="comment_image">
+                                                                <div><img src="~/Content/images/comment_3.jpg" alt=""></div>
+                                                            </div>
+                                                            <div class="comment_content">
+                                                                <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
+                                                                    <div class="comment_author"><a href="#">Milley Cyrus</a></div>
+                                                                    <div class="stars">
+                                                                        <ul>
+                                                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                                            <li><i class="fa fa-star-half-o" aria-hidden="true"></i></li>
+                                                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="comment_time ml-auto">1 day ago</div>
+                                                                </div>
+                                                                <div class="comment_text">
+                                                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have alteration in some form, by injected humour.</p>
+                                                                </div>
+                                                                <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
+                                                                    <div class="comment_extra comment_likes"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i><span>15</span></a></div>
+                                                                    <div class="comment_extra comment_reply"><a href="#"><i class="fa fa-reply" aria-hidden="true"></i><span>Reply</span></a></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <div class="add_comment_container  wow bounceInUp delay-100 ">
+                                                    <div class="add_comment_title">Add a review</div>
+                                                    <div class="add_comment_text">You must be <a href="~/Home/login">logged</a> in to post a comment.</div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="relatedpro-he75 wow bounceInUp delay-100">
+        <div class="container">
+            <div class="prorelcont">
+                <div class="title">
+                    <h2>related products</h2>
+                </div>
+                <div class="owl-carousel owl-theme">
+
+                    @foreach (var item in Model.Category.Products)
+                    {
+                        <div class="item" style="height:358px">
+                            <div class="gallery_product">
+                                <div class="content-product">
+                                    <div class="imagess" style="height:150px">
+                                        <img src="~/images/@item.ProductImageURL">
+                                    </div>
+                                    <div class="offers">
+                                        <p>offer</p>
+                                    </div>
+                                    <div class="details-product">
+                                        <div class=" title-product">
+                                            <h1>@item.Category.CategoryName</h1>
+                                            @Html.ActionLink(@item.ProductName, "productdetails", new { id = item.ProductID, @class = "h2" })
+                                        </div>
+                                        <div class="rstestare">
+                                            <ul>
+                                                @for (int y = 0; y < 5; y++)
+                                                {
+                                                    if (item.ProductRate > y)
+                                                    {
+                                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                    }
+                                                    else
+                                                    {
+                                                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                                    }
+                                                }
+                                            </ul>
+                                        </div>
+                                        <div class="price">
+                                            <span class="old-price">
+                                                @item.ProductOldPrice $
+                                            </span>
+                                            <span class="new-price">@item.ProductNewPrice $</span>
+                                        </div>
+                                        <div class="add-fv-product">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <form method="post" class="formcart" data-ajax="true" data-ajax-method="post" data-ajax-complete="completed">
+                                                        <input type="hidden" value="@User.Identity.GetUserId()" name="User_Id" />
+                                                        <input type="hidden" value="@Model.ProductID" name="productId" />
+
+                                                        <button class="btn btn-danger submit" id="@Model.ProductID" style="margin:15px -10px; padding:3px 15px;">
+                                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>add to cart
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="height:5px">
+                                                    @*<a class="favoret">
+                                                            <i class="fa fa-heart active"></i>
+                                                        </a>*@
+                                                    <form method="post" data-ajax="true" data-ajax-method="post" data-ajax-complete="completed">
+                                                        <input type="hidden" value="@User.Identity.GetUserId()" name="User_Id" />
+                                                        <input type="hidden" value="@Model.ProductID" name="productId" />
+                                                        <button class=" submitwishlist " id="@Model.ProductID" style="outline: none; background-color: transparent; border: none; margin-left: 10px; margin-top: 5px">
+                                                            <i class="fa fa-heart " style="color:darkgray ; outline:none; font-size:30px; border-radius: 50%; padding: 9px " aria-hidden="true"></i>add to cart
+
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @* Logo-----ShowMore *@
+                    <div class="item" style="height:340px">
+                        <div class="loadmore-he75">
+                            <div class="logo_container">
+                                <a href="~/Home/index">
+                                    <span class="the">the </span>
+                                    <div class="logo_text">Big Store<span></span></div>
+                                    <p class="somtitle">The best supermarket</p>
+                                </a>
+                            </div>
+                            <a class="view" href="~/product/products" target="_blank">view more</a>
+                        </div>
+                    </div>
+                    @* End Logo Show More ---------------- *@
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("Services")
+</div>
+
+
+
+
+@section scripts{
+    <script>
+
+        $(function () {
+
+            $('.submit').on('click', function (evt) {
+                var btn = $(this)
+                var sr = $('form').serialize();
+                var x = sr.split("User_Id")[0] + "User_Id" + sr.split("User_Id")[1].split("=")[0] + "=" + sr.split("User_Id")[1].split("=")[1] + "=" + sr.split("User_Id")[1].split("=")[2] + "=" + btn.attr("id");
+                evt.preventDefault();
+                $.post('/cartproducts/addtocart/', x, function (data) {
+                    $.post('/Account/cartCounter/', function (data) {
+                        $('#spnCart').html(data);
+                        toastr.success("Product has been Added to your Cart Successfully");
+                    });
+                    
+
+                });
+
+
+            });
+        });
+        $(function () {
+
+            $('.submitwishlist').on('click', function (evt) {
+                var btn = $(this)
+                var sr = $('form').serialize();
+                var x = sr.split("User_Id")[0] + "User_Id" + sr.split("User_Id")[1].split("=")[0] + "=" + sr.split("User_Id")[1].split("=")[1] + "=" + sr.split("User_Id")[1].split("=")[2] + "=" + btn.attr("id");
+                evt.preventDefault();
+                $.post('/WishListProducts/Addtowishlist/', x, function (data) {
+                    $.post('/Account/wishlistCounter/',function (data) {
+                        $('#spnWish').html(data);
+                        toastr.remove();
+                        toastr.success("Product has been Added Successfully To your WishList");
+                    });
+
+                });
+            });
+        });
+
+    </script>
+}
